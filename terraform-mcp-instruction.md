@@ -1,6 +1,7 @@
 # Terraform MCP Server Usage Instructions
 
 ## Overview
+
 The Terraform MCP (Model Context Protocol) server is a specialized tool that enables LLMs to generate high-quality Terraform code and manage Terraform workflows through API integrations with HCP Terraform and Terraform Enterprise.
 
 ## Core Capabilities
@@ -18,6 +19,8 @@ The Terraform MCP (Model Context Protocol) server is a specialized tool that ena
 - **API Operations**: Executes HCP Terraform and Terraform Enterprise commands via API calls
 
 - **Iterative Development**: Enables automated testing, refinement, and enhancement of Terraform configurations
+
+-
 
 - **State Management**: Facilitates proper state handling and workspace management
 
@@ -101,17 +104,21 @@ Execute validation in this specific order:
 - Track which registries have been searched
 - Remember user preferences and requirements stated earlier
 
-### 2. Progressive Enhancement
+### 2. Persistance
+
+- When using the Terraform MCP server capabilities to call the TFE or HCP api any create or update operation should be persisted in terraform HCL.
+
+### 3. Progressive Enhancement
 - Start with minimal viable configuration
 - Iteratively add complexity based on validation results
 - Use MCP server feedback to refine generated code
 
-### 3. Documentation Generation
+### 4. Documentation Generation
 - Include inline comments explaining non-obvious configurations
 - Document registry sources for modules
 - Add README sections for complex modules
 
-### 4. Security Considerations
+### 5. Security Considerations
 - Never expose Terraform tokens in outputs
 - Sanitize sensitive data in error messages
 - Follow principle of least privilege for API operations
