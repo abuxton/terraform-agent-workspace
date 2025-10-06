@@ -22,7 +22,7 @@ endif
 # check_prereqs:
 # 	${REPO_TOP}/common/bin/check-make-prereqs
 
-.PHONY: help fmt fmt-check init validate plan show apply destroy tflint tfsec test ci clean
+.PHONY: help fmt fmt-check init validate plan show apply destroy tfdocs tflint tfsec test ci clean
 
 help:
 	@echo "Makefile targets:"
@@ -34,6 +34,7 @@ help:
 	@echo "  show        - show plan (requires plan.tfplan)"
 	@echo "  apply       - terraform apply plan.tfplan (requires manual approval)"
 	@echo "  destroy     - terraform destroy (interactive)"
+	@echo "  tfdocs      - generate or update Terraform documentation"
 	@echo "  tflint      - run tflint if installed"
 	@echo "  tfsec       - run tfsec if installed"
 	@echo "  test        - run unit/e2e tests (if present)"
@@ -82,6 +83,11 @@ tfsec:
 	@command -v tfsec >/dev/null 2>&1 || { echo "tfsec not found, skipping"; exit 0; }
 	@echo "Running tfsec..."
 	@tfsec $(TF_DIR)
+
+tfdocs:
+	@command -v terraform-docs >/dev/null 2>&1 || { echo "terraform-docs not found, skipping"; exit 0; }
+	@echo "Running terraform-docs with config ${REPO_TOP}/.terraform-docs.yml..."
+	@terraform-docs -c ${REPO_TOP}/.terraform-docs.yml ${TF_DIR}
 
 # Placeholder for tests (e.g., terratest, kube tests, etc.)
 test:
