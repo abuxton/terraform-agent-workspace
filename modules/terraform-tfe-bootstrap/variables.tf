@@ -22,3 +22,9 @@ variable "tfe_organization" {
   type        = string
   default     = ""
 }
+
+variable "tfe_workspace_name" {
+  description = "Optional default workspace name to use with Terraform Cloud/Enterprise when running CLI operations from this module."
+  type        = string
+  default     = ""
+}

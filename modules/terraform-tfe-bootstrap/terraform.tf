@@ -15,5 +15,14 @@ terraform {
   cloud {
     hostname     = var.tfe_hostname
     organization = var.tfe_organization
+    # Optional: default workspace name to use when running CLI inside this module
+    # If provided, the CLI will use this workspace when using the Terraform Cloud/Enterprise client.
+    workspaces {
+      name    = var.tfe_workspace_name
+      project = var.tfe_project ? var.tfe_project : "default"
+      tags = {
+        var.tfe_workspace_tags != "" ? "tags" : "" = var.tfe_workspace_tags
+      }
+    }
   }
 }
