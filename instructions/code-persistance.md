@@ -18,6 +18,8 @@ This file provides agent-facing rules derived from repository `agent-instruction
 ## High-level policy
 
 - Persist every create or update that modifies infrastructure as HCL files in the repository.
+-
+- The target folder for any HCL code is the `./modules/terraform-tfe-resources` module folder.
 
 - Do not apply changes automatically; create a plan and attach it to a PR for human review.
 
@@ -26,6 +28,8 @@ This file provides agent-facing rules derived from repository `agent-instruction
 
 - Place generated code in appropriate module paths. Required files per module:
   - `main.tf`, `variables.tf`, `outputs.tf`, `README.md` (root module must have README)
+  - where possible use `component.tf` or `resource.tf` files as appropriate to aid document intention and context i.e `projects.tf` or `<projectmname>_project.tf` `workspace.tf` or `projectname_workspaces.tf`
+
 ## Branching & commits
 
 - Create a new branch per logical change using these patterns:
