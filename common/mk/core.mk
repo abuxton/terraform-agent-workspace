@@ -22,7 +22,7 @@ endif
 # check_prereqs:
 # 	${REPO_TOP}/common/bin/check-make-prereqs
 
-.PHONY: help fmt fmt-check init validate plan show apply destroy tfdocs tflint tfsec test ci clean
+.PHONY: help fmt fmt-check init validate plan show apply destroy tftoken tfdocs tflint tfsec test ci clean
 
 help:
 	@echo "Makefile targets:"
@@ -34,6 +34,7 @@ help:
 	@echo "  show        - show plan (requires plan.tfplan)"
 	@echo "  apply       - terraform apply plan.tfplan (requires manual approval)"
 	@echo "  destroy     - terraform destroy (interactive)"
+	@echo "  tftoken     - export tfe_token from credentials"
 	@echo "  tfdocs      - generate or update Terraform documentation"
 	@echo "  tflint      - run tflint if installed"
 	@echo "  tfsec       - run tfsec if installed"
@@ -72,7 +73,18 @@ apply:
 destroy:
 	@echo "Destroying resources (interactive)..."
 	@$(TF) destroy
-
+tftoken:
+	@echo "Terraform token Helper"
+	@if [ -f ~/.terraform.d/credentials.tfrc.json ]; then \
+	  echo "credentials found in ~/.terraform.d/credentials.tfrc.json. To export the TFE_TOKEN in your shell:"; \
+	  echo "for terraform HCP or app.terraform.io use the following:"; \
+	  echo "export TFE_TOKEN=\$$(jq -r '.credentials."app.terraform.io".token' < ~/.terraform.d/credentials.tfrc.json)"; \
+	  echo "for self-hosted TFE (replace <app.terraform.io> with your server URL):"; \
+	else \
+	  echo "No credentials file found at ~/.terraform.d/credentials.tfrc.json"; \
+	  echo "please login using `terraform login app.terraform.io/eu/<your tfe server>` "; \
+	  exit 1; \
+	fi
 # Optional static checks (if tools installed)
 tflint:
 	@command -v tflint >/dev/null 2>&1 || { echo "tflint not found, skipping"; exit 0; }
