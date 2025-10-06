@@ -1,0 +1,4 @@
+tfe_hostname        = "https://app.terraform.io"
+tfe_organization    = ""
+tfe_ssl_skip_verify = false
+tfe_token           = "" # You really should use TF_VAR_tfe_token as an environment variable
