@@ -1,0 +1,13 @@
+terraform {
+  cloud {
+    organization = "my-org" # Required; replace with your organization name
+    hostname     = "app.terraform.io" # Optional; defaults to app.terraform.io
+
+    workspaces {
+      project = "default" # Optional; defaults to "default"
+      #name 	= "" # Optional; if not set, Terraform CLI will prompt for workspace
+      #tags =  ["tag1", "tag2"] # Optional; list of tags to apply to the workspace
+      }
+    }
+  }
+}
