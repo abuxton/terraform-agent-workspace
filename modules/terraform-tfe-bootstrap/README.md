@@ -2,21 +2,10 @@
 
 Module to bootstrap Terraform Enterprise (TFE) / HCP Terraform resources for an organization.
 
-<!-- BEGIN_TF_DOCS -->
 
 ## Requirements
 
 No special requirements beyond Terraform 1.0+ and the `hashicorp/tfe` provider as declared in `terraform.tf`.
-
-## Providers
-
-This module uses the `tfe` provider. Configure authentication via the Terraform CLI or environment variables as shown below.
-
-## Inputs
-
-<!-- END_TF_DOCS -->
-
-<!-- BEGIN_TF_DOCS -->
 
 ## Usage
 
@@ -87,24 +76,42 @@ When running Terraform commands locally or in CI, ensure the provider sees the c
 
   The `tfe` provider can read `TFE_TOKEN` and `TFE_ADDRESS` directly from environment variables in many contexts. If you prefer that, you can skip setting `TF_VAR_*` and rely on the provider's native env support.
 
-## Outputs
-
-<!-- END_TF_DOCS -->
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
+| <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | ~> 0.45 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_tfe_hostname"></a> [tfe\_hostname](#input\_tfe\_hostname) | TFE/HCP hostname (e.g. app.terraform.io or your enterprise hostname) | `string` | `"https://app.terraform.io"` | no |
+| <a name="input_tfe_organization"></a> [tfe\_organization](#input\_tfe\_organization) | Default TFE organization to use when creating resources (optional). Many TFE resources require an organization argument. | `string` | `""` | no |
+| <a name="input_tfe_ssl_skip_verify"></a> [tfe\_ssl\_skip\_verify](#input\_tfe\_ssl\_skip\_verify) | Skip TLS verification when connecting to TFE/HCP (use with caution) | `bool` | `false` | no |
+| <a name="input_tfe_token"></a> [tfe\_token](#input\_tfe\_token) | Terraform Enterprise (TFE) or HCP Terraform API token | `string` | `""` | no |
+<!-- END_TF_DOCS -->
 
 ## Notes about terraform-docs
 
 This README includes terraform-docs markers (`<!-- BEGIN_TF_DOCS -->` / `<!-- END_TF_DOCS -->`).
 Run `terraform-docs` (v0.16+ recommended) in the module directory to populate the `## Inputs`, `## Outputs`, `## Providers`, and `## Requirements` sections automatically.
 
+
 Example:
 
 ```bash
+# project root
+TF_DIR=./modules/terraform-tfe-bootstrap make tfdocs
+# directly
 cd modules/terraform-tfe-bootstrap
-terraform-docs markdown . > README.md
+terraform-docs -c ../../.terraform-docs.yml .
+make -f ../../Makefile tfdocs
+
+
 ```
 
 If you'd like, I can run `terraform-docs` and commit the generated documentation during this branch's work (requires `terraform-docs` installed in the environment).
-
-<!-- END_TF_DOCS -->

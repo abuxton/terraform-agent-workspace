@@ -11,8 +11,14 @@ variable "tfe_token" {
   default     = ""
 }
 
-variable "tfe_skip_tls_verify" {
+variable "tfe_ssl_skip_verify" {
   description = "Skip TLS verification when connecting to TFE/HCP (use with caution)"
   type        = bool
   default     = false
+}
+
+variable "tfe_organization" {
+  description = "Default TFE organization to use when creating resources (optional). Many TFE resources require an organization argument."
+  type        = string
+  default     = ""
 }
