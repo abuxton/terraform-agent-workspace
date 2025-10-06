@@ -1,4 +1,7 @@
 tfe_hostname        = "https://app.terraform.io"
 tfe_organization    = ""
+tfe_project         = "default"
 tfe_ssl_skip_verify = false
-tfe_token           = "" # You really should use TF_VAR_tfe_token as an environment variable
+tfe_token           = ""
+tfe_workspace_name  = "terraform-agent-bootstrap"
+tfe_workspace_tags  = []

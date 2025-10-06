@@ -91,8 +91,11 @@ When running Terraform commands locally or in CI, ensure the provider sees the c
 |------|-------------|------|---------|:--------:|
 | <a name="input_tfe_hostname"></a> [tfe\_hostname](#input\_tfe\_hostname) | TFE/HCP hostname (e.g. app.terraform.io or your enterprise hostname) | `string` | `"https://app.terraform.io"` | no |
 | <a name="input_tfe_organization"></a> [tfe\_organization](#input\_tfe\_organization) | Default TFE organization to use when creating resources (optional). Many TFE resources require an organization argument. | `string` | `""` | no |
+| <a name="input_tfe_project"></a> [tfe\_project](#input\_tfe\_project) | Optional project name to associate with the workspace when using Terraform Enterprise (some installations support workspace projects). If unset, the module or CLI will fall back to "default". | `string` | `"default"` | no |
 | <a name="input_tfe_ssl_skip_verify"></a> [tfe\_ssl\_skip\_verify](#input\_tfe\_ssl\_skip\_verify) | Skip TLS verification when connecting to TFE/HCP (use with caution) | `bool` | `false` | no |
 | <a name="input_tfe_token"></a> [tfe\_token](#input\_tfe\_token) | Terraform Enterprise (TFE) or HCP Terraform API token | `string` | `""` | no |
+| <a name="input_tfe_workspace_name"></a> [tfe\_workspace\_name](#input\_tfe\_workspace\_name) | Optional default workspace name to use with Terraform Cloud/Enterprise when running CLI operations from this module. | `string` | `"terraform-agent-bootstrap"` | no |
+| <a name="input_tfe_workspace_tags"></a> [tfe\_workspace\_tags](#input\_tfe\_workspace\_tags) | Optional list of tags to apply to the workspace in Terraform Cloud/Enterprise. Provide as a list of strings (e.g. ["tag1", "tag2"]). | `list(string)` | `[]` | no |
 <!-- END_TF_DOCS -->
 
 ## Notes about terraform-docs

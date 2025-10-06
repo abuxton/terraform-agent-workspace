@@ -26,5 +26,17 @@ variable "tfe_organization" {
 variable "tfe_workspace_name" {
   description = "Optional default workspace name to use with Terraform Cloud/Enterprise when running CLI operations from this module."
   type        = string
-  default     = ""
+  default     = "terraform-agent-bootstrap"
+}
+
+variable "tfe_project" {
+  description = "Optional project name to associate with the workspace when using Terraform Enterprise (some installations support workspace projects). If unset, the module or CLI will fall back to \"default\"."
+  type        = string
+  default     = "default"
+}
+
+variable "tfe_workspace_tags" {
+  description = "Optional list of tags to apply to the workspace in Terraform Cloud/Enterprise. Provide as a list of strings (e.g. [\"tag1\", \"tag2\"])."
+  type        = list(string)
+  default     = []
 }
