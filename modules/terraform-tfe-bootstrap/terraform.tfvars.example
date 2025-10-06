@@ -1,7 +1,0 @@
-tfe_hostname        = "https://app.terraform.io"
-tfe_organization    = ""
-tfe_project         = "default"
-tfe_ssl_skip_verify = false
-tfe_token           = ""
-tfe_workspace_name  = "terraform-agent-bootstrap"
-tfe_workspace_tags  = []

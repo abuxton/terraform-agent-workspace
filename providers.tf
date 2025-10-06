@@ -2,6 +2,7 @@ provider "tfe" {
   hostname = var.tfe_hostname
   token    = var.tfe_token
 
+  organization = var.tfe_organization
   # Optionally skip TLS verification (useful for self-signed enterprise installs)
   ssl_skip_verify = var.tfe_ssl_skip_verify
 }
