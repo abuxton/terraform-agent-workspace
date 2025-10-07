@@ -8,6 +8,12 @@ if [ $? -ne 0 ]; then
     echo "See https://mikefarah.gitbook.io/yq/"
     err=1
 fi
+which jq >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "You must install the 'jq' tool"
+    echo "See https://jqlang.org/download/"
+    err=1
+fi
 
 if [ "${err}" -ne 0 ]; then
     exit 1
